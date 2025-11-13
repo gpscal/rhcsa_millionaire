@@ -1,0 +1,28 @@
+{
+  "started_at": "2025-11-13T16:59:34.743708",
+  "last_accessed": "2025-11-13T17:06:02.661167",
+  "modules": {
+    "module_01": {
+      "started": true,
+      "completed_lessons": [
+        0
+      ],
+      "quiz_completed": false
+    }
+  },
+  "bookmarks": [
+    {
+      "module_id": "module_01",
+      "lesson_index": 0,
+      "note": "review again",
+      "date": "2025-11-13T17:04:18.929109"
+    }
+  ],
+  "notes": {},
+  "quiz_scores": {},
+  "completed_lessons": [
+    "module_01_0"
+  ],
+  "total_study_time": 0,
+  "achievements": []
+}

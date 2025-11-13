@@ -29,23 +29,25 @@ Questions 11-15 (Hard):     64,000 - 1,000,000 points
 
 ## 📚 Topics Covered
 
-The game covers all major RHCSA EX200 exam objectives:
+The game covers all major RHCSA EX200 exam objectives with **60+ real-world exam questions**:
 
-- **Basic Commands**: Navigation, file operations
-- **User Management**: Creating users, password policies, account management
-- **File Permissions**: chmod, chown, ACLs
-- **SELinux**: Contexts, booleans, troubleshooting
-- **Networking**: nmcli, network configuration, teaming
-- **Firewall**: firewalld configuration
-- **Storage Management**: Partitions, LVM, XFS, Stratis, VDO
-- **System Services**: systemd, service management
-- **Package Management**: dnf/yum operations
-- **Process Management**: ps, top, signals
-- **Job Scheduling**: cron, at commands
-- **Containers**: Podman basics
-- **Boot Process**: GRUB, kernel parameters
-- **System Recovery**: Rescue mode, password reset
-- **Logging**: System logs and troubleshooting
+- **Basic Commands**: Navigation, file operations, finding files
+- **User Management**: Creating users, password policies, account management, UID/GID
+- **File Permissions**: chmod, chown, ACLs, SGID, special permissions
+- **SELinux**: Contexts, booleans, semanage, chcon, restorecon, troubleshooting
+- **Networking**: nmcli, network configuration, teaming, static IP configuration
+- **Firewall**: firewalld configuration, services, and ports
+- **Storage Management**: Partitions, LVM (create, extend, reduce), XFS, ext4, Stratis, VDO, swap
+- **System Services**: systemd, systemctl, enabling/disabling services
+- **Package Management**: dnf/yum operations, repository configuration
+- **Process Management**: ps, top, signals, job control
+- **Job Scheduling**: cron, at commands, scheduling patterns
+- **Containers**: Podman with systemd integration, user services, persistent containers
+- **Boot Process**: GRUB, kernel parameters, boot targets, grubby
+- **System Recovery**: Rescue mode, root password reset, SELinux relabeling
+- **Logging**: journald persistence, system logs
+- **NFS & AutoFS**: Network filesystem mounting, autofs configuration
+- **System Tuning**: tuned profiles and performance optimization
 
 ## 🚀 Installation & Usage
 
@@ -129,10 +131,11 @@ After completing the game, you'll see:
 ## 🔧 Technical Details
 
 ### Question Database
-- **8 Easy Questions**: Fundamental concepts
-- **10 Medium Questions**: Intermediate administration
-- **10 Hard Questions**: Advanced topics and complex scenarios
-- **Random Selection**: 5 from each difficulty level per game
+- **17 Easy Questions**: Fundamental concepts and basic commands
+- **20 Medium Questions**: Intermediate administration and practical tasks
+- **20 Hard Questions**: Advanced topics, complex multi-step scenarios
+- **Random Selection**: 5 from each difficulty level per game (15 total per session)
+- **Questions sourced from**: Real RHCSA exam guides and practice scenarios
 
 ### Color Coding
 The game uses ANSI color codes for enhanced visual experience:

@@ -2,6 +2,7 @@
 """
 RHCSA Millionaire - CLI-based RHEL 10 EX200 Exam Preparation Game
 A Slumdog Millionaire-style trivia game for RHCSA certification prep
+Enhanced with comprehensive real-world exam questions
 """
 
 import os
@@ -94,7 +95,7 @@ class Game:
         questions = {
             'easy': [
                 Question(
-                    "What command is used to display the current working directory?",
+                    "What command displays the current working directory?",
                     ["A: ls", "B: pwd", "C: cd", "D: dir"],
                     1, "easy", "Basic Commands",
                     "This command 'prints' the 'working directory'",
@@ -108,7 +109,7 @@ class Game:
                     "/etc/passwd contains user account information including username, UID, GID, home directory, and shell."
                 ),
                 Question(
-                    "What is the default permission for newly created files (without umask)?",
+                    "What is the default permission for newly created files (before umask)?",
                     ["A: 777", "B: 755", "C: 666", "D: 644"],
                     2, "easy", "File Permissions",
                     "Files don't get execute permission by default",
@@ -143,11 +144,74 @@ class Game:
                     "Both ps and top display running processes, with top providing real-time updates."
                 ),
                 Question(
-                    "Which package manager is used in RHEL 10?",
+                    "Which package manager is used in RHEL 9/10?",
                     ["A: apt", "B: yum", "C: dnf", "D: pacman"],
                     2, "easy", "Package Management",
                     "RHEL 8+ uses the 'dandified' version",
                     "dnf (Dandified YUM) is the default package manager in RHEL 8 and later versions."
+                ),
+                Question(
+                    "What command shows disk usage of mounted filesystems?",
+                    ["A: du", "B: df", "C: fdisk", "D: lsblk"],
+                    1, "easy", "Storage",
+                    "Think 'disk free'",
+                    "df (disk free) displays disk space usage of mounted filesystems."
+                ),
+                Question(
+                    "Which command displays SELinux status?",
+                    ["A: selinux-status", "B: getenforce", "C: seinfo", "D: sestatus"],
+                    3, "easy", "SELinux",
+                    "Status commands often start with 'se'",
+                    "sestatus provides detailed SELinux status information. getenforce shows the mode only."
+                ),
+                Question(
+                    "What file must be edited to make filesystems mount automatically at boot?",
+                    ["A: /etc/mtab", "B: /etc/fstab", "C: /proc/mounts", "D: /etc/auto.mount"],
+                    1, "easy", "Storage Management",
+                    "The 'fs' stands for filesystem",
+                    "/etc/fstab (filesystem table) contains information about filesystems to mount at boot time."
+                ),
+                Question(
+                    "Which command creates a new user account?",
+                    ["A: adduser", "B: newuser", "C: useradd", "D: createuser"],
+                    2, "easy", "User Management",
+                    "The command starts with 'user'",
+                    "useradd is the standard command for creating new user accounts."
+                ),
+                Question(
+                    "What command shows network interface configuration?",
+                    ["A: ifconfig", "B: ip addr", "C: netstat", "D: route"],
+                    1, "easy", "Networking",
+                    "The 'ip' command is the modern tool",
+                    "'ip addr' or 'ip a' displays network interface configuration in modern Linux systems."
+                ),
+                Question(
+                    "Which command makes a service start automatically at boot?",
+                    ["A: systemctl start", "B: systemctl enable", "C: systemctl restart", "D: systemctl autostart"],
+                    1, "easy", "System Services",
+                    "Enable means 'make it automatic'",
+                    "systemctl enable configures a service to start automatically at boot time."
+                ),
+                Question(
+                    "What is the command to view the last 10 lines of a file?",
+                    ["A: head", "B: tail", "C: cat", "D: less"],
+                    1, "easy", "File Operations",
+                    "Think of the 'tail' end of a file",
+                    "tail displays the last 10 lines of a file by default."
+                ),
+                Question(
+                    "Which key interrupt signal terminates a running process in the terminal?",
+                    ["A: Ctrl+Z", "B: Ctrl+C", "C: Ctrl+D", "D: Ctrl+X"],
+                    1, "easy", "Process Management",
+                    "C for 'Cancel'",
+                    "Ctrl+C sends SIGINT to terminate the current foreground process."
+                ),
+                Question(
+                    "What command searches for files in a directory hierarchy?",
+                    ["A: search", "B: locate", "C: find", "D: grep"],
+                    2, "easy", "File Operations",
+                    "The most direct command name",
+                    "find searches for files in a directory hierarchy based on various criteria."
                 ),
             ],
             'medium': [
@@ -178,14 +242,7 @@ class Game:
                     "nmcli con mod <connection> ipv4.addresses <IP/prefix> is the correct syntax for setting a static IP."
                 ),
                 Question(
-                    "Which file should you edit to make a filesystem mount automatically at boot?",
-                    ["A: /etc/mtab", "B: /etc/fstab", "C: /proc/mounts", "D: /etc/auto.mount"],
-                    1, "medium", "Storage Management",
-                    "The 'fs' stands for filesystem",
-                    "/etc/fstab (filesystem table) contains information about filesystems to mount at boot time."
-                ),
-                Question(
-                    "What is the correct command to add a firewall rule allowing HTTP traffic?",
+                    "What is the correct command to add a firewall rule allowing HTTP traffic permanently?",
                     ["A: firewall-cmd --add-service=http --permanent", 
                      "B: iptables -A INPUT -p tcp --dport 80 -j ACCEPT",
                      "C: firewall-cmd --permanent --add-port=80/tcp", 
@@ -203,7 +260,7 @@ class Game:
                     "chage -M 90 john sets the maximum number of days between password changes to 90."
                 ),
                 Question(
-                    "What command creates a compressed tar archive?",
+                    "What command creates a compressed tar archive with gzip?",
                     ["A: tar -czf archive.tar.gz files/", "B: tar -xzf archive.tar.gz", 
                      "C: gzip -c files/ > archive.tar.gz", "D: compress -z files/ archive.tar.gz"],
                     0, "medium", "File Management",
@@ -232,6 +289,97 @@ class Game:
                     0, "medium", "Job Scheduling",
                     "The 'at' command is for one-time jobs",
                     "The 'at' command schedules one-time jobs. 'at 02:30 tomorrow' schedules a job for 2:30 AM the next day."
+                ),
+                Question(
+                    "What command creates a swap partition on a logical volume?",
+                    ["A: mkswap /dev/vg/lv_swap", "B: swapon /dev/vg/lv_swap", 
+                     "C: mkfs.swap /dev/vg/lv_swap", "D: swapinit /dev/vg/lv_swap"],
+                    0, "medium", "Storage Management",
+                    "mk usually means 'make'",
+                    "mkswap initializes a swap area on a device or partition. Then use swapon to activate it."
+                ),
+                Question(
+                    "How do you create a user 'alice' with UID 2000?",
+                    ["A: useradd -u 2000 alice", "B: useradd --uid=2000 alice",
+                     "C: adduser -u 2000 alice", "D: Both A and B"],
+                    3, "medium", "User Management",
+                    "Both -u and --uid work",
+                    "useradd accepts both -u 2000 and --uid=2000 to specify a custom UID."
+                ),
+                Question(
+                    "What command displays ACLs on a file?",
+                    ["A: lsacl", "B: getfacl", "C: showacl", "D: acl -l"],
+                    1, "medium", "File Permissions",
+                    "get means retrieve",
+                    "getfacl displays the file access control lists (ACLs) of a file or directory."
+                ),
+                Question(
+                    "How do you find all files modified in the last 7 days?",
+                    ["A: find / -mtime -7", "B: find / -mtime +7", 
+                     "C: locate --modified 7", "D: search -mtime 7"],
+                    0, "medium", "File Operations",
+                    "Negative number means 'less than'",
+                    "find / -mtime -7 finds files modified within the last 7 days. -7 means 'less than 7 days ago'."
+                ),
+                Question(
+                    "What is the command to extend a logical volume by 500MB?",
+                    ["A: lvextend -L +500M /dev/vg/lv", "B: lvgrow -L +500M /dev/vg/lv",
+                     "C: lvresize +500M /dev/vg/lv", "D: lvexpand -L 500M /dev/vg/lv"],
+                    0, "medium", "LVM",
+                    "extend means grow",
+                    "lvextend -L +500M extends the logical volume by 500MB. The + sign means 'add to current size'."
+                ),
+                Question(
+                    "How do you make journald logs persistent across reboots?",
+                    ["A: Edit /etc/systemd/journald.conf, set Storage=persistent", 
+                     "B: mkdir /var/log/journal",
+                     "C: systemctl enable journald-persistent", 
+                     "D: journalctl --persistent"],
+                    0, "medium", "Logging",
+                    "Configuration is in journald.conf",
+                    "Setting Storage=persistent in /etc/systemd/journald.conf makes journal logs persistent."
+                ),
+                Question(
+                    "What command adds a repository in RHEL using yum-config-manager?",
+                    ["A: yum-config-manager --add-repo=http://repo.url", 
+                     "B: yum add-repo http://repo.url",
+                     "C: dnf-config add-repo http://repo.url", 
+                     "D: repoconfig --add http://repo.url"],
+                    0, "medium", "Package Management",
+                    "yum-config-manager is the tool",
+                    "yum-config-manager --add-repo=<url> adds a new repository configuration."
+                ),
+                Question(
+                    "How do you set the hostname permanently?",
+                    ["A: hostname newhostname", "B: hostnamectl set-hostname newhostname",
+                     "C: echo newhostname > /etc/hostname", "D: Both B and C"],
+                    3, "medium", "System Configuration",
+                    "hostnamectl is the modern way, but editing /etc/hostname also works",
+                    "Both hostnamectl set-hostname and editing /etc/hostname make the hostname change persistent."
+                ),
+                Question(
+                    "What command searches for a string in files recursively?",
+                    ["A: grep -r 'pattern' /path", "B: find /path -string 'pattern'",
+                     "C: search -r 'pattern'", "D: locate 'pattern'"],
+                    0, "medium", "File Operations",
+                    "grep with -r for recursive",
+                    "grep -r (or -R) searches for a pattern recursively through directories."
+                ),
+                Question(
+                    "How do you create a cron job that runs daily at 11 PM?",
+                    ["A: 0 23 * * * /path/to/script", "B: 23 0 * * * /path/to/script",
+                     "C: 0 11 * * * /path/to/script", "D: * 23 * * * /path/to/script"],
+                    0, "medium", "Job Scheduling",
+                    "Format is: minute hour day month weekday",
+                    "Cron format: 0 23 * * * means 0 minutes past 23 hours (11 PM) every day."
+                ),
+                Question(
+                    "What is the correct way to give a group 'developers' ownership of a directory?",
+                    ["A: chown :developers /path/dir", "B: chgrp developers /path/dir",
+                     "C: chmod g:developers /path/dir", "D: Both A and B"],
+                    3, "medium", "File Permissions",
+                    "Both chown and chgrp can change group ownership",
+                    "Both 'chown :groupname' and 'chgrp groupname' can change group ownership of files/directories."
                 ),
             ],
             'hard': [
@@ -274,7 +422,7 @@ class Game:
                     "Network teaming in nmcli requires a JSON configuration string specifying the runner type."
                 ),
                 Question(
-                    "What is the correct command to reset the root password from rescue mode?",
+                    "What is the correct command sequence to reset root password from rescue mode?",
                     ["A: mount -o remount,rw /sysroot && chroot /sysroot && passwd root && touch /.autorelabel",
                      "B: chroot /sysroot && passwd root && reboot",
                      "C: mount /dev/sda1 /mnt && chroot /mnt && passwd",
@@ -312,24 +460,124 @@ class Game:
                     "All three syntaxes are valid. */15 means every 15 minutes, 9-17 is 9 AM to 5 PM, and 1-5 or MON-FRI represents weekdays."
                 ),
                 Question(
-                    "Which command correctly configures a VDO volume with 10:1 logical to physical ratio?",
-                    ["A: vdo create --name=vdo1 --device=/dev/sdb --vdoLogicalSize=100G --vdoPhysicalSize=10G",
-                     "B: vdo create --name=vdo1 --device=/dev/sdb --vdoLogicalSize=10G",
-                     "C: lvcreate --type vdo -L 10G -V 100G -n vdo1 vg_name",
-                     "D: Both B and C"],
+                    "Which command correctly configures a VDO volume with 10:1 logical to physical ratio on LVM?",
+                    ["A: vdo create --name=vdo1 --device=/dev/sdb --vdoLogicalSize=100G",
+                     "B: lvcreate --type vdo -L 10G -V 100G -n vdo1 vg_name",
+                     "C: vdocreate -L 10G -V 100G vdo1",
+                     "D: Both A and B"],
                     3, "hard", "VDO Storage",
                     "VDO can be created standalone or as LVM type",
                     "Both standalone VDO and LVM-VDO are valid. With LVM: -L is physical size, -V is virtual/logical size."
                 ),
                 Question(
-                    "How do you configure a system to automatically mount an NFS share at boot with specific options?",
-                    ["A: Add to /etc/fstab: server:/share /mnt/nfs nfs defaults,_netdev 0 0",
-                     "B: Add to /etc/fstab: server:/share /mnt/nfs nfs4 defaults 0 0",
-                     "C: Use autofs with /etc/auto.master and /etc/auto.nfs",
+                    "How do you configure autofs to automount NFS home directories?",
+                    ["A: Create /etc/auto.master.d/home.autofs with '/home/guests /etc/auto.home'",
+                     "B: Edit /etc/auto.home with '* -rw,sync server:/path/&'",
+                     "C: systemctl enable --now autofs",
                      "D: All of the above"],
                     3, "hard", "Advanced Storage",
-                    "Multiple methods exist for NFS automounting",
-                    "All methods work: /etc/fstab with _netdev option, NFSv4 in fstab, or autofs for on-demand mounting."
+                    "All steps are required for autofs NFS mounting",
+                    "Autofs requires creating master map entry, indirect map with wildcards, and enabling the service."
+                ),
+                Question(
+                    "What is the complete command to create a Podman container as a user service on port 8080?",
+                    ["A: podman run -d -p 8080:80 --name web httpd",
+                     "B: podman run -d -p 8080:80 -v /data:/var/www:Z --name web httpd",
+                     "C: Create container, generate systemd unit, enable with --user flag, loginctl enable-linger",
+                     "D: podman create --user-service -p 8080:80 web"],
+                    2, "hard", "Containers",
+                    "Multiple steps required for persistent user service",
+                    "User services require: create container, generate systemd unit in ~/.config/systemd/user/, enable with --user, and enable-linger."
+                ),
+                Question(
+                    "How do you set SELinux context for a directory permanently?",
+                    ["A: chcon -R -t httpd_sys_content_t /web",
+                     "B: semanage fcontext -a -t httpd_sys_content_t '/web(/.*)?' && restorecon -Rv /web",
+                     "C: restorecon -Rv /web",
+                     "D: setcontext -R httpd_sys_content_t /web"],
+                    1, "hard", "SELinux",
+                    "semanage makes changes permanent in policy",
+                    "semanage fcontext adds the rule to policy, then restorecon applies it. chcon is temporary only."
+                ),
+                Question(
+                    "What is the correct procedure to reduce an LVM logical volume with ext4 filesystem?",
+                    ["A: Unmount, e2fsck, resize2fs to smaller size, lvreduce, mount",
+                     "B: lvreduce -L -2G /dev/vg/lv && resize2fs /dev/vg/lv",
+                     "C: resize2fs /dev/vg/lv 5G && lvreduce -L 5G /dev/vg/lv",
+                     "D: lvreduce -r -L 5G /dev/vg/lv"],
+                    0, "hard", "LVM & Filesystems",
+                    "Must shrink filesystem BEFORE reducing LV",
+                    "For ext4 reduction: unmount, check filesystem with e2fsck, shrink filesystem with resize2fs, then reduce LV with lvreduce."
+                ),
+                Question(
+                    "How do you configure a system to use a specific tuned profile?",
+                    ["A: tuned-adm profile virtual-guest",
+                     "B: systemctl enable tuned && tuned-adm profile throughput-performance",
+                     "C: Edit /etc/tuned/active_profile",
+                     "D: All of the above work"],
+                    3, "hard", "System Tuning",
+                    "Multiple valid approaches",
+                    "All methods work: tuned-adm is the primary tool, editing active_profile works, and tuned service must be enabled."
+                ),
+                Question(
+                    "What command creates a VDO volume with deduplication on /dev/sdb?",
+                    ["A: vdo create --name=vdo1 --device=/dev/sdb --vdoLogicalSize=50G",
+                     "B: mkfs.xfs -K /dev/mapper/vdo1 after creating VDO",
+                     "C: Mount with _netdev,x-systemd.requires=vdo.service in fstab",
+                     "D: All of the above are required"],
+                    3, "hard", "VDO Storage",
+                    "VDO setup requires multiple steps",
+                    "Complete VDO setup: create volume with vdo, format with -K (no discard), mount with systemd dependencies."
+                ),
+                Question(
+                    "How do you configure boot target to multi-user (non-graphical)?",
+                    ["A: systemctl set-default multi-user.target",
+                     "B: systemctl isolate multi-user.target",
+                     "C: ln -sf /lib/systemd/system/multi-user.target /etc/systemd/system/default.target",
+                     "D: Both A and C"],
+                    3, "hard", "Boot Process",
+                    "Both methods change default target",
+                    "systemctl set-default creates the symlink automatically. Manual symlink creation also works."
+                ),
+                Question(
+                    "What is the correct way to add a kernel parameter only for the current boot?",
+                    ["A: Press 'e' at GRUB, add parameter to linux line, Ctrl-x to boot",
+                     "B: Edit /etc/default/grub and reboot",
+                     "C: grubby --update-kernel=DEFAULT --args='parameter'",
+                     "D: Edit /boot/grub2/grub.cfg"],
+                    0, "hard", "Boot Process",
+                    "GRUB editor allows one-time boot changes",
+                    "Editing GRUB at boot with 'e' key allows temporary kernel parameter changes for that boot only."
+                ),
+                Question(
+                    "How do you find all files in /etc owned by user ID 1000?",
+                    ["A: find /etc -uid 1000",
+                     "B: find /etc -user 1000",
+                     "C: locate /etc -uid 1000",
+                     "D: grep -r uid:1000 /etc"],
+                    0, "hard", "File Operations",
+                    "find with -uid for numeric user ID",
+                    "find /etc -uid 1000 searches for files owned by UID 1000. -user expects username not number."
+                ),
+                Question(
+                    "What command correctly configures NFS mount with _netdev option in fstab?",
+                    ["A: server:/share /mnt nfs defaults,_netdev 0 0",
+                     "B: server:/share /mnt nfs4 rw,_netdev 0 0",
+                     "C: Both are correct",
+                     "D: NFS doesn't need _netdev"],
+                    2, "hard", "Advanced Storage",
+                    "_netdev is important for network filesystems",
+                    "Both nfs and nfs4 work. _netdev option ensures mount waits for network, critical for NFS at boot."
+                ),
+                Question(
+                    "How do you create a shared directory with SGID bit for group collaboration?",
+                    ["A: mkdir /shared && chmod 2770 /shared && chgrp developers /shared",
+                     "B: mkdir /shared && chmod g+s,770 /shared && chown :developers /shared",
+                     "C: Both A and B are correct",
+                     "D: chmod 770 /shared && setgid developers"],
+                    2, "hard", "Advanced Permissions",
+                    "SGID is 2000 in octal or g+s",
+                    "Both methods set SGID (2770 or g+s). SGID ensures new files inherit group ownership. chgrp or chown :group both work."
                 ),
             ]
         }
@@ -577,6 +825,8 @@ class Game:
         print("  • Safe havens at questions 5 (5,000 pts) and 10 (50,000 pts)")
         print("  • Use lifelines wisely: 50/50, Hint, and Skip")
         print("  • Reach 1,000,000 points to become an RHCSA Master!")
+        print("\n  Topics covered: User/Group Management, File Permissions, LVM, SELinux,")
+        print("  Networking, Containers, Storage, Services, Boot Process, and more!")
         
         print_colored("\n  Press Enter to start...", Colors.YELLOW)
         input()
